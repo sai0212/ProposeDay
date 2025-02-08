@@ -22,6 +22,9 @@ function revealHeart(heart) {
   if (!heart.classList.contains('revealed')) {
     heart.classList.add('revealed');
     revealedHearts++;
+
+    // Add burst animation
+    heart.classList.add('burst');
   }
 
   // If all hearts are revealed, show the message
