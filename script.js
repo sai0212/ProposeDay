@@ -31,7 +31,6 @@ function renderMaze(maze) {
       if (cell === 'player') cellElement.classList.add('player');
       if (cell === 'obstacle') cellElement.classList.add('obstacle');
       if (cell === 'end') cellElement.classList.add('end');
-      if (cell === 'powerup') cellElement.classList.add('powerup');
       mazeElement.appendChild(cellElement);
     });
   });
@@ -69,11 +68,19 @@ function endGame() {
 const mazeData = createMaze();
 renderMaze(mazeData);
 
-// Event listener for touch movement
+// Event listener for touch movement (left and right swipe)
 document.addEventListener('touchstart', (event) => {
   const touchX = event.touches[0].clientX;
   const touchY = event.touches[0].clientY;
 
   if (touchX < window.innerWidth / 2) movePlayer('left');
   else movePlayer('right');
+});
+
+document.addEventListener('touchend', (event) => {
+  const touchX = event.changedTouches[0].clientX;
+  const touchY = event.changedTouches[0].clientY;
+
+  if (touchY < window.innerHeight / 2) movePlayer('up');
+  else movePlayer('down');
 });
