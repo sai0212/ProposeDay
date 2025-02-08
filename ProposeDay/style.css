@@ -1,0 +1,65 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #FFB6C1; /* Light pink */
+    text-align: center;
+    color: #fff;
+  }
+  
+  .game-container {
+    padding: 20px;
+  }
+  
+  h1 {
+    color: #D32F2F; /* Rosy red */
+  }
+  
+  h2 {
+    color: #D32F2F; /* Rosy red */
+  }
+  
+  .maze {
+    display: grid;
+    grid-template-columns: repeat(10, 30px);
+    grid-template-rows: repeat(10, 30px);
+    gap: 2px;
+    margin: 20px auto;
+    width: max-content;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .cell {
+    width: 30px;
+    height: 30px;
+    background-color: #FFF;
+    border: 1px solid #DDD;
+  }
+  
+  .cell.wall {
+    background-color: #333;
+  }
+  
+  .cell.player {
+    background-color: #F44336; /* Red */
+  }
+  
+  .cell.powerup {
+    background-color: #8BC34A; /* Green */
+  }
+  
+  .cell.obstacle {
+    background-color: #FFEB3B; /* Yellow */
+  }
+  
+  #message {
+    font-size: 24px;
+  }
+  
