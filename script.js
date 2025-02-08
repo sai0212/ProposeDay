@@ -1,38 +1,34 @@
-const mazeElement = document.getElementById('maze');
+const gridElement = document.getElementById('grid');
 const messageElement = document.getElementById('message');
-const mazeSize = 10;
-const player = { x: 0, y: 0 };
+const totalHearts = 12; // Total number of hearts in the grid
+let revealedHearts = 0; // To track how many hearts have been revealed
 
-// Maze generation function
-function createMaze() {
-  let maze = Array.from({ length: mazeSize }, () => Array(mazeSize).fill('empty'));
-
-  // Set walls (random obstacles)
-  for (let i = 0; i < mazeSize; i++) {
-    for (let j = 0; j < mazeSize; j++) {
-      if (Math.random() < 0.2) maze[i][j] = 'wall';
-      if (Math.random() < 0.1 && maze[i][j] !== 'wall') maze[i][j] = 'obstacle';
-    }
+// Generate hearts
+function generateHearts() {
+  for (let i = 0; i < totalHearts; i++) {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerText = '❤️';
+    
+    // Add event listener to each heart
+    heart.addEventListener('click', () => revealHeart(heart));
+    
+    gridElement.appendChild(heart);
   }
-
-  maze[0][0] = 'player'; // Start position
-  maze[mazeSize - 1][mazeSize - 1] = 'end'; // End position
-  return maze;
 }
 
-// Rendering the maze with text inside the cells
-function renderMaze(maze) {
-  mazeElement.innerHTML = ''; // Clear the previous maze
-  maze.forEach((row, rowIndex) => {
-    row.forEach((cell, colIndex) => {
-      const cellElement = document.createElement('div');
-      cellElement.classList.add('cell');
-      
-      // Add different classes based on cell type
-      if (cell === 'wall') {
-        cellElement.classList.add('wall');
-        cellElement.innerText = 'Wall';
-      } else if (cell === 'player') {
-        cellElement.classList.add('player');
-        cellElement.innerText = 'Player';
-  
+// Reveal heart and check for game completion
+function revealHeart(heart) {
+  if (!heart.classList.contains('revealed')) {
+    heart.classList.add('revealed');
+    revealedHearts++;
+  }
+
+  // If all hearts are revealed, show the message
+  if (revealedHearts === totalHearts) {
+    messageElement.classList.remove('hidden');
+  }
+}
+
+// Start the game
+generateHearts();
