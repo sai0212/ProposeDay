@@ -47,40 +47,4 @@ function movePlayer(direction) {
   if (direction === 'left' && player.y > 0) newY--;
   if (direction === 'right' && player.y < mazeSize - 1) newY++;
 
-  if (maze[newX][newY] !== 'wall' && maze[newX][newY] !== 'obstacle') {
-    player.x = newX;
-    player.y = newY;
-  }
-
-  if (player.x === mazeSize - 1 && player.y === mazeSize - 1) {
-    endGame();
-  }
-
-  renderMaze(maze);
-}
-
-// Ending the game
-function endGame() {
-  messageElement.classList.remove('hidden');
-}
-
-// Initializing the game
-const mazeData = createMaze();
-renderMaze(mazeData);
-
-// Event listener for touch movement (left and right swipe)
-document.addEventListener('touchstart', (event) => {
-  const touchX = event.touches[0].clientX;
-  const touchY = event.touches[0].clientY;
-
-  if (touchX < window.innerWidth / 2) movePlayer('left');
-  else movePlayer('right');
-});
-
-document.addEventListener('touchend', (event) => {
-  const touchX = event.changedTouches[0].clientX;
-  const touchY = event.changedTouches[0].clientY;
-
-  if (touchY < window.innerHeight / 2) movePlayer('up');
-  else movePlayer('down');
-});
+  if (maze[newX][newY] !== 'wall' && maze[newX][newY] !== 'obsta
