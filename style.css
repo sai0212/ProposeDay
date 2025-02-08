@@ -34,3 +34,55 @@ h2 {
   grid-template-columns: repeat(4, 100px);  /* 4 columns */
   grid-template-rows: repeat(3, 100px);     /* 3 rows */
   gap: 10px;
+  width: 430px;  /* Adjust width to fit 4 hearts per row */
+  margin: 0 auto;
+}
+
+.heart {
+  background-color: #FFF;
+  border: 2px solid #D32F2F;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;  /* Making hearts round instead of diamond */
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  transition: transform 0.3s, opacity 0.5s ease-out;
+}
+
+.heart.revealed {
+  background-color: #F44336; /* Red */
+}
+
+.hidden {
+  display: none;
+}
+
+#message {
+  font-size: 24px;
+  margin-top: 20px;
+  opacity: 0;  /* Hide message initially */
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Burst animation */
+@keyframes burst {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+.heart.burst {
+  animation: burst 0.6s ease-out forwards;
+}
