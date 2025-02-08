@@ -23,13 +23,21 @@ function revealHeart(heart) {
     heart.classList.add('revealed');
     revealedHearts++;
 
-    // Add burst animation
+    // Add burst animation to heart
     heart.classList.add('burst');
+
+    // Delay the removal of the heart after animation
+    setTimeout(() => {
+      heart.style.display = 'none'; // Hide heart after burst
+    }, 600); // Match this delay with the burst animation duration (600ms)
   }
 
-  // If all hearts are revealed, show the message
+  // If all hearts are revealed and popped, show the message
   if (revealedHearts === totalHearts) {
-    messageElement.classList.remove('hidden');
+    setTimeout(() => {
+      messageElement.classList.remove('hidden');
+      messageElement.style.opacity = 1;  // Fade in the message
+    }, 700); // Delay message appearance slightly after all hearts are popped
   }
 }
 
